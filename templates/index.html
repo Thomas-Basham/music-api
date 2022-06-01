@@ -1,7 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+
  <head>
   <meta charset="utf-8"/>
   <title>
@@ -11,18 +13,18 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css" rel="stylesheet"/>
   <link href="{% static '/css/audio_player.css' %}" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.53/wavesurfer.min.js"></script>
- </head>
- <body>
-  <!-- partial:index.partial.html -->
-  <html>
-   <head>
-    <meta charset="utf-8"/>
-    <title>
-     Flat music player
-    </title>
+    <!-- partial -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js">
+  </script>
+  <script src="{% static '/scripts/script.js' %}">
+  </script>
+     <meta charset="utf-8"/>
    </head>
-   <body>
-    <div class="contain">
+
+
+    <div style="width: 100%; height: 1200px; text-align: center" class="contain">
      <div class="container">
       <div class="music-player">
         {% for item in page_obj %}
@@ -45,17 +47,13 @@
 
        </div>
        {% endfor %}
+
       </div>
      </div>
     </div>
-   </body>
-  </html>
-  <!-- partial -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js">
-  </script>
-  <script src="{% static '/scripts/script.js' %}">
-  </script>
- </body>
-</html>
+
+
+
+
+
+{% endblock content %}
