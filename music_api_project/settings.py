@@ -196,7 +196,7 @@ CSRF_TRUSTED_ORIGINS = [
 django_heroku.settings(locals())
 
 
-# AWS
+# AWS for file uploads
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
