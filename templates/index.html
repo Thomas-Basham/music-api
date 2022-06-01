@@ -10,6 +10,7 @@
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css" rel="stylesheet"/>
   <link href="{% static '/css/audio_player.css' %}" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.53/wavesurfer.min.js"></script>
  </head>
  <body>
   <!-- partial:index.partial.html -->
@@ -26,7 +27,7 @@
       <div class="music-player">
         {% for item in page_obj %}
        <div class="cover">
-        <img alt="" src="{{item.image.url}}"/>
+{#        <img alt="" src="{{item.image.url}}"/>#}
        </div>
        <div class="titre">
         <h3>
@@ -39,7 +40,7 @@
        <center><a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i class="fa fa-step-backward fa-2x"></i></a> &nbsp; &nbsp; &nbsp; <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}"><i class="fa fa-step-forward fa-2x"></i></a></center>
        <div class="lecteur">
         <audio class="fc-media" style="width: 100%;">
-         <source src="{% if item.audio_file %}{{item.audio_file.url}} {% else %} {{item.audio_link}} {% endif %}" type="audio/mp3"/>
+         <source src="{% if item.audio_file %}{{item.audio_file.url}} {% else %} {{item.audio_link | safe}} {% endif %}" type="audio/mp3"/>
         </audio>
 
        </div>
