@@ -194,3 +194,13 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+
+# AWS
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIA2TCOSAVPB2QRZK72'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'albumartpics'
+AWS_QUERYSTRING_AUTH = False
