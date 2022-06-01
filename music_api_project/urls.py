@@ -18,7 +18,7 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
-    # path('', include('music_api.urls')),
+    path('', include('music_api.urls')),
     path("admin/", admin.site.urls),
     path("api/v1/music/", include("music_api.urls")),
     path("api-auth/", include("rest_framework.urls")),
