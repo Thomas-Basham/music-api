@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+
+import boto3
 import django_heroku
 import dj_database_url
 import dotenv
@@ -199,6 +201,12 @@ django_heroku.settings(locals())
 # AWS for file uploads
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# import boto3
+# # session = boto3.Session(
+# #     aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+# #     aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+# #     region_name='us-west-2'
+# # )
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
