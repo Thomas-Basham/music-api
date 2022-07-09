@@ -194,7 +194,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-
+ALLOWED_HOSTS = "music-api-thomas-basham.herokuapp.com"
 
 cloudinary.config(
   cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
