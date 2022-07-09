@@ -97,3 +97,9 @@ def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
     return redirect("index")
+
+
+def documentation(request):
+    context = dict(current_user=request.user)
+    return render(request, 'documentation.html', context)
+

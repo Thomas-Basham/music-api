@@ -1,13 +1,7 @@
 *:focus{
     outline: none;
 }
-html {
-    background: #f2f2f2;
-}
-body {
-    margin: 0;
-    font-family: "Raleway",sans-serif;
-}
+
 h1 {
     margin: 0;
     font-size: 33px;
@@ -30,14 +24,16 @@ h3 {
     background-image: url("https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/bg-music-player.jpg");
     background-repeat: repeat;
     background-size: cover;
+    border-radius: 10px;
 }
 .music-player {
     display: block;
     position: relative;
-    width: 400px;
-    height: 570px;
+    width: 380px;
+    height: 550px;
     margin: auto;
     margin-top: 6%;
+    padding-bottom: 30px;
     border-radius: 0 0 10px 10px;
     background: transparent linear-gradient(to bottom,rgba(10,11,31,0.9) 50%,rgb(10,11,31) 70%) repeat scroll 0 0;
     box-shadow: 1px 10px 20px 5px #222;

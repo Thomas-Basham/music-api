@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import MusicList, MusicDetail, index, SongCreate,\
-    register_request, login_request, logout_request
+    register_request, login_request, logout_request, documentation
 
 urlpatterns = [
     path("", index, name="index"),
@@ -10,4 +10,6 @@ urlpatterns = [
     path("login", login_request, name="login"),
     path("logout", logout_request, name="logout"),
     path("add-song-form", SongCreate.as_view(), name="add_song_form"),
+    path("documentation", documentation, name="documentation"),
+
 ]

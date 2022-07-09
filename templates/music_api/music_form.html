@@ -14,11 +14,11 @@
 
     <div class="container py-2 ">
 
-        <form method="POST" class="song-form" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
 
-            <button class="btn btn-primary" type="submit" >Upload</button>
+            <button class="btn btn-green" style="background-color: #5bbb95;" type="submit" >Upload</button>
 
         </form>
 
