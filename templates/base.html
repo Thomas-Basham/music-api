@@ -8,13 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-<a class="button" href="/admin">Admin Login To add a Song</a>
+<header>
+<a class="btn btn-outline-secondary btn-sm" href="/admin">Admin Login</a>
 <nav style="text-align: center">
 
-        <nav class="navbar navbar-expand-xl navbar-light mt-1 mb-3" style="margin: 0 auto">
+    <nav class="navbar navbar-expand-xl navbar-dark mt-1 mb-3" style="margin: 0 auto">
         <div class="container-fluid">
 
             <a class=" navbar-brand" href="/">Demo</a>
@@ -34,7 +41,23 @@
     </nav>
 
 </nav>
-
+</header>
+<main>
 {% block content %}{% endblock content %}
+</main>
+
+
+<footer>
+    <nav class="navbar nav-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="https://github.com/Thomas-Basham/" target="_blank" rel="noreferrer">©Thomas
+                Basham</a>
+        </div>
+        <br>
+
+        &nbsp;
+    </nav>
+</footer>
+
 </body>
 </html>

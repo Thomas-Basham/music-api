@@ -27,42 +27,14 @@ class MusicDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 def index(request):
-    paginator = Paginator(Music.objects.all(), 1)
+    paginator = Paginator(list(reversed(Music.objects.all())), 1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    # context={"page_obj":page_obj}
 
-    context = dict(form=SongForm())
-    context["page_obj"] = page_obj
-
+    context = dict(page_obj=page_obj)
     context["dataset"] = Music.objects.all().order_by("-id")
-    print(request.user)
+
     return render(request, "index.html", context)
-
-    # if request.method == 'POST':
-    #     form = SongForm(request.POST, request.FILES)
-    #     context['posted'] = form.instance
-    #     if form.is_valid():
-    #         form.instance.added_by = request.user
-    #         form.save()
-    #     return redirect('index')
-
-
-def add_song_form(request):
-    context = dict(add_song_form=SongForm())
-    context["dataset"] = Music.objects.all().order_by("-id").reverse()
-    context["current_user"] = request.user
-    if request.method == 'POST':
-        form = SongForm(request.POST, request.FILES)
-        context['posted'] = form.instance
-        print("BEFORE", request)
-
-        if form.is_valid():
-            form.save()
-            print("AFTER", context)
-        return redirect('index')
-
-    return render(request, 'music_api/music_form.html', context)
 
 
 class SongCreate(CreateView):
@@ -87,7 +59,6 @@ class SongCreate(CreateView):
 class SongForm(ModelForm):
     class Meta:
         model = Music
-        # exclude = ('added_by',)
         fields = "__all__"
 
 def register_request(request):

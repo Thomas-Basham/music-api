@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %} Music Player {% endblock %}
 {% block content %}
 
     {% load static %}
@@ -6,13 +7,6 @@
 
     <head>
         <meta charset="utf-8"/>
-        <title>
-            My Music Player
-        </title>
-        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-
-           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css"
@@ -61,15 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="form-style-8" style="margin-top: 2vh">
-    {% load crispy_forms_tags %}
-        <form action="/" method="post"
-              enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ add_song_form|crispy }}
-            <button class="btn" type="submit">Upload Song</button>
-        </form>
-    </div>
+
 
 
 

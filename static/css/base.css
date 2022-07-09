@@ -1,38 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
-nav {
-    padding-top: 4vh;
-    text-align: center;
+
+
+body, html {
+
+    /*height: 100vh;*/
+    /*width: 100vw;*/
+
+    background:  linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) no-repeat scroll 0 0;
+    color: whitesmoke !important;
 }
-.container{
+header {
+    background-color: rgba(106, 112, 224, 0.2) !important;
+    color: whitesmoke !important;
+}
+.navbar {
+    color: whitesmoke !important;
+}
+
+main {
+    margin-block: 50px;
+    padding-bottom: 200px;
+    /*max-height: max-content;*/
+}
+
+
+
+.container {
     text-align: center;
 }
 
-.button {
-    background-color: cadetblue;
-    border-radius: 10px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
+/*.button {*/
+/*    background-color: cadetblue;*/
+/*    border-radius: 10px;*/
+/*    color: white;*/
+/*    padding: 15px 32px;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    display: inline-block;*/
+/*    font-size: 16px;*/
+/*}*/
 
-body {
-    background: transparent linear-gradient(to bottom,rgba(10,11,31,0.9) 50%,rgb(10,11,31) 70%) repeat scroll 0 0;
-
-}
 
 h1 {
     padding-top: 5vh;
     text-align: center;
     font-family: Luckiest Guy, cursive;
     letter-spacing: 2px;
+    color: whitesmoke !important;
+
 }
 
 label {
-    padding: 10px;
+    padding: 5px;
 }
 
 input[type=text] {
@@ -50,9 +70,17 @@ input[type=text] {
     zoom: 1.2;
 }
 
-.container {
-    text-align: center;
+form {
+
+    background: transparent linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) no-repeat scroll 0 0;
+    padding: 20px;
+    text-align: left;
+    width: 20vw;
     margin: 0 auto;
-    width: 80%;
-    height: 40vh;
+
+}
+
+.nav-bottom {
+    background-color: rgba(106, 112, 224, 0.1);
+
 }

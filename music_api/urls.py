@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import MusicList, MusicDetail, index, SongCreate, add_song_form,\
+from .views import MusicList, MusicDetail, index, SongCreate,\
     register_request, login_request, logout_request
 
 urlpatterns = [

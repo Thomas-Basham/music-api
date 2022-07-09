@@ -13,13 +13,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
-import dotenv
-from dotenv import load_dotenv
+
 import cloudinary as cloudinary
 import environ
 # import dj_database_url
 
-load_dotenv()  # take environment variables from .env.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,13 +45,12 @@ ENVIRONMENT = env.str("ENVIRONMENT")
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0:8000', '127.0.0.1', 'https://music-api-thomas-basham.herokuapp.com']
-
+ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS"))
 
 # Application definition
 
@@ -157,7 +154,6 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/"),
     )
@@ -178,23 +174,14 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# ************ HEROKU DEPLOYMENT *****************
-
-# This module uses Heroku’s DATABASE_URL variable if it’s on Heroku,
-# or it uses the DATABASE_URL we set in the .env file if we’re working locally.
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
-
 
 CSRF_TRUSTED_ORIGINS = [
     'https://music-api-thomas-basham.herokuapp.com'
 ]
 CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-ALLOWED_HOSTS = ["music-api-thomas-basham.herokuapp.com"]
+
 
 cloudinary.config(
   cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
@@ -204,7 +191,6 @@ cloudinary.config(
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 
 X_FRAME_OPTIONS = 'ALLOW-FROM https://thomasbashamportfolio.net'
 
