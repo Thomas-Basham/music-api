@@ -192,6 +192,8 @@ if os.path.isfile(dotenv_file):
 CSRF_TRUSTED_ORIGINS = [
     'https://music-api-thomas-basham.herokuapp.com'
 ]
+CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
+CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
 
 
 cloudinary.config(
