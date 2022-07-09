@@ -11,9 +11,28 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
+<a class="button" href="/admin">Admin Login To add a Song</a>
 <nav style="text-align: center">
 
-<a class="button" href="https://music-api-thomas-basham.herokuapp.com/api/v1/music/admin">Admin Login To add a Song</a>
+        <nav class="navbar navbar-expand-xl navbar-light mt-1 mb-3" style="margin: 0 auto">
+        <div class="container-fluid">
+
+            <a class=" navbar-brand" href="/">Demo</a>
+
+            <div class=" navbar-collapse show" id="navbarToggleExternalContent">
+                <div class="navbar-nav">
+                    <a class="nav-link  " href="/documentation">Documentation</a>
+                    {% if not request.user.is_authenticated %}
+                        <a class="nav-link " href="{% url 'login' %}">Login/Register</a>
+                    {% else %}
+                        <a class="nav-link " href="/add-song-form">Add a Song</a>
+                        <a class="nav-link " href="{% url 'logout' %}">Logout</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
 </nav>
 
 {% block content %}{% endblock content %}

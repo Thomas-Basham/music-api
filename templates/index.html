@@ -1,58 +1,75 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% load static %}
+    {% load static %}
 
 
- <head>
-  <meta charset="utf-8"/>
-  <title>
-   My Music Player
-  </title>
-  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css" rel="stylesheet"/>
-  <link href="{% static '/css/audio_player.css' %}" rel="stylesheet"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.53/wavesurfer.min.js"></script>
-    <!-- partial -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js">
-  </script>
-  <script src="{% static '/scripts/script.js' %}">
-  </script>
-     <meta charset="utf-8"/>
-   </head>
+    <head>
+        <meta charset="utf-8"/>
+        <title>
+            My Music Player
+        </title>
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css"
+              rel="stylesheet"/>
+        <link href="{% static '/css/audio_player.css' %}" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.53/wavesurfer.min.js"></script>
+        <!-- partial -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelement-and-player.min.js">
+        </script>
+        <script src="{% static '/scripts/script.js' %}">
+        </script>
+        <meta charset="utf-8"/>
+    </head>
 
 
     <div style="width: 100%; height: 1200px; text-align: center" class="contain">
-     <div class="container">
-      <div class="music-player">
-        {% for item in page_obj %}
-       <div class="cover">
-       <img alt="" src="{{item.image.url}}"/>
-       </div>
-       <div class="titre">
-        <h3>
-         {{item.artist}}
-        </h3>
-        <h1>
-         {{item.title}}
-        </h1>
-       </div>
-       <center><a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i class="fa fa-step-backward fa-2x"></i></a> &nbsp; &nbsp; &nbsp; <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}"><i class="fa fa-step-forward fa-2x"></i></a></center>
-       <div class="lecteur">
-        <audio class="fc-media" style="width: 100%;">
-         <source src="{% if item.audio_file %}{{item.audio_file.url}} {% endif %}" type="audio/mp3"/>
-        </audio>
+        <div class="container">
+            <div class="music-player">
+                {% for item in page_obj %}
+                    <div class="cover">
+                        <img alt="" src="{{ item.img.url }}"/>
+                    </div>
+                    <div class="titre">
+                        <h3>
+                            {{ item.artist }}
+                        </h3>
+                        <h1>
+                            {{ item.title }}
+                        </h1>
+                    </div>
+                    <center><a
+                            href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i
+                            class="fa fa-step-backward fa-2x"></i></a> &nbsp; &nbsp; &nbsp; <a
+                            href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}"><i
+                            class="fa fa-step-forward fa-2x"></i></a></center>
+                    <div class="lecteur">
+                        <audio class="fc-media" style="width: 100%;">
+                            <source src="{% if item.audio %}{{ item.audio.url }} {% endif %}" type="audio/mp3"/>
+                        </audio>
 
-       </div>
-       {% endfor %}
+                    </div>
+                {% endfor %}
 
-      </div>
-     </div>
+            </div>
+        </div>
     </div>
-
-
+    <div class="form-style-8" style="margin-top: 2vh">
+    {% load crispy_forms_tags %}
+        <form action="/" method="post"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ add_song_form|crispy }}
+            <button class="btn" type="submit">Upload Song</button>
+        </form>
+    </div>
 
 
 

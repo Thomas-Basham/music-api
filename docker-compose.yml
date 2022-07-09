@@ -1,31 +1,10 @@
-version: "3.9"
+version: '3'
 
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - DATABASE_URL=postgres://uqnfcfwxcgopch:df763f9d6b445836c18a98d7e286cafd8bef03cac648ede39084177cdda5d830@ec2-3-218-171-44.compute-1.amazonaws.com:5432/d14u1v6fjrr4jf
-
-
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-
+    command: gunicorn music_api_project.wsgi:application --bind 0.0.0.0:8000 --workers 10
     volumes:
-      - .:/app
+      - .:/code
     ports:
-      - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - DATABASE_URL=postgres://uqnfcfwxcgopch:df763f9d6b445836c18a98d7e286cafd8bef03cac648ede39084177cdda5d830@ec2-3-218-171-44.compute-1.amazonaws.com:5432/d14u1v6fjrr4jf
-
-
-    depends_on:
-      - db
+      - 8000:8000

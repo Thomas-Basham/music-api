@@ -13,11 +13,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
-import boto3
-import django_heroku
-import dj_database_url
 import dotenv
 from dotenv import load_dotenv
+import cloudinary as cloudinary
+import environ
+# import dj_database_url
 
 load_dotenv()  # take environment variables from .env.
 
@@ -25,6 +25,24 @@ load_dotenv()  # take environment variables from .env.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+env = environ.Env(
+    DEBUG=(bool, False),
+    ENVIRONMENT=(str, "PRODUCTION"),
+    ALLOW_ALL_ORIGINS=(bool, False),
+    ALLOWED_HOSTS=(list, []),
+    ALLOWED_ORIGINS=(list, []),
+    CSRF_TRUSTED_ORIGINS=(list, []), # lab 39
+    DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
+    DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
+    DATABASE_USER=(str, ""),
+    DATABASE_PASSWORD=(str, ""),
+    DATABASE_HOST=(str, ""),
+    DATABASE_PORT=(int, 5432),
+)
+
+environ.Env.read_env()
+
+ENVIRONMENT = env.str("ENVIRONMENT")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -34,7 +52,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://music-api-thomas-basham.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0:8000', '127.0.0.1', 'https://music-api-thomas-basham.herokuapp.com']
 
 
 # Application definition
@@ -47,7 +65,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'cloudinary',
+
     'rest_framework',
+
+    'crispy_forms',
 
     'music_api',
 
@@ -90,30 +112,15 @@ WSGI_APPLICATION = 'music_api_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'server-ip',
-        'PORT': '5432',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'C'
-        'OPTIONS': {
-            'sslmode': None,
-            # 'CONN_MAX_AGE': '60',
-            # 'sslcert': '/path/to/file',
-            # 'sslkey': '/path/to/file',
-            # 'sslrootcert': '/path/to/file',
-        },
-    },
+    "default": {
+        "ENGINE": env.str("DATABASE_ENGINE"),
+        "NAME": env.str("DATABASE_NAME"),
+        "USER": env.str("DATABASE_USER"),
+        "PASSWORD": env.str("DATABASE_PASSWORD"),
+        "HOST": env.str("DATABASE_HOST"),
+        "PORT": env.int("DATABASE_PORT"),
+    }
 }
-# db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'] = dj_database_url.config()
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -148,7 +155,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/"),
@@ -171,7 +179,6 @@ REST_FRAMEWORK = {
 }
 
 
-# Docker
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # ************ HEROKU DEPLOYMENT *****************
 
@@ -181,34 +188,23 @@ dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
-#  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CSRF_TRUSTED_ORIGINS = [
     'https://music-api-thomas-basham.herokuapp.com'
 ]
-# Activate Django-Heroku.
-django_heroku.settings(locals())
 
 
-# AWS for file uploads
+cloudinary.config(
+  cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+  api_key=os.getenv('CLOUDINARY_API_KEY'),
+  api_secret=os.getenv('CLOUDINARY_API_SECRET')
+)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# import boto3
-# # session = boto3.Session(
-# #     aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-# #     aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
-# #     region_name='us-west-2'
-# # )
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_QUERYSTRING_AUTH = False
+
+X_FRAME_OPTIONS = 'ALLOW-FROM https://thomasbashamportfolio.net'
+

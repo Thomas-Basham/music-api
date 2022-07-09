@@ -1,7 +1,18 @@
+from django.forms import ModelForm
+from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
-from .models import Music
+from django.views.generic.edit import CreateView
+from .forms import NewUserForm
 from .permissions import IsOwnerOrReadOnly
 from .serializers import MusicSerializer
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.paginator import Paginator
+# import models
+from .models import Music
 
 
 class MusicList(generics.ListCreateAPIView):
@@ -14,17 +25,104 @@ class MusicDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Music.objects.all()
     serializer_class = MusicSerializer
 
-# Create your views here.
-from django.shortcuts import render, redirect
-
-# imported our models
-from django.core.paginator import Paginator
-from . models import Music
-
 
 def index(request):
-    paginator= Paginator(Music.objects.all(), 1)
+    paginator = Paginator(Music.objects.all(), 1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context={"page_obj":page_obj}
-    return render(request,"index.html",context)
+    # context={"page_obj":page_obj}
+
+    context = dict(form=SongForm())
+    context["page_obj"] = page_obj
+
+    context["dataset"] = Music.objects.all().order_by("-id")
+    print(request.user)
+    return render(request, "index.html", context)
+
+    # if request.method == 'POST':
+    #     form = SongForm(request.POST, request.FILES)
+    #     context['posted'] = form.instance
+    #     if form.is_valid():
+    #         form.instance.added_by = request.user
+    #         form.save()
+    #     return redirect('index')
+
+
+def add_song_form(request):
+    context = dict(add_song_form=SongForm())
+    context["dataset"] = Music.objects.all().order_by("-id").reverse()
+    context["current_user"] = request.user
+    if request.method == 'POST':
+        form = SongForm(request.POST, request.FILES)
+        context['posted'] = form.instance
+        print("BEFORE", request)
+
+        if form.is_valid():
+            form.save()
+            print("AFTER", context)
+        return redirect('index')
+
+    return render(request, 'music_api/music_form.html', context)
+
+
+class SongCreate(CreateView):
+    model = Music
+    fields = ["title", "artist", "img", "audio"] # "added_by",
+    # fields = "__all__"
+    success_url = reverse_lazy('index')
+
+    # https://developpaper.com/file-upload-in-django-using-class-based-view/
+    # Remove CSRF protection temporarily, don't learn from me!
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(SongCreate, self).dispatch(request, *args, **kwargs)
+
+    # override
+    def form_valid(self, form):
+        # Add the user object into the form and store it in the model
+        form.instance.added_by = self.request.user
+        return super(SongCreate, self).form_valid(form)
+
+
+class SongForm(ModelForm):
+    class Meta:
+        model = Music
+        # exclude = ('added_by',)
+        fields = "__all__"
+
+def register_request(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("login")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    form = NewUserForm()
+    return render(request=request, template_name="register.html", context={"register_form": form})
+
+
+def login_request(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("index")
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request=request, template_name="login.html", context={"login_form": form})
+
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect("index")
