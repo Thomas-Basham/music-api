@@ -189,8 +189,6 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 
-
-
 CSRF_TRUSTED_ORIGINS = [
     'https://music-api-thomas-basham.herokuapp.com'
 ]
