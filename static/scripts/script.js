@@ -14,9 +14,9 @@ var audio = {
                     features : ['playpause', 'current', 'duration', 'progress', 'volume', 'tracks', 'fullscreen'],
                     alwaysShowControls      : true,
                     timeAndDurationSeparator: '<span></span>',
-                    iPadUseNativeControls: true,
-                    iPhoneUseNativeControls: true,
-                    AndroidUseNativeControls: true
+                    // iPadUseNativeControls: true,
+                    // iPhoneUseNativeControls: true,
+                    // AndroidUseNativeControls: true
                 });
             }
         },
