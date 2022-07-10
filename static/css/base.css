@@ -84,6 +84,11 @@ input::file-selector-button {
 .docs-content-center {
     border-inline: solid #5bbb95 1px;
 }
+   @media (max-width: 480px){
+       .docs-content-center {
+    border-block: solid #5bbb95 1px;
+}
+   }
 
 
 .docs-content h4 {
