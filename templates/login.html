@@ -3,22 +3,26 @@
 
 {% block content %}
 
-{% load crispy_forms_tags %}
+    {% load crispy_forms_tags %}
 
-  <h1 class="display-3">Login</h1>
+    <h1 class="display-3">Login</h1>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<!--Login-->
-<div class="container">
-  <form method="POST" class="row-no-gutters">
-    {% csrf_token %}
-    {{ login_form|crispy }}
-    <button class="btn btn-green" type="submit" style="background-color: #5bbb95;">Login</button>
-  </form>
+    <!--Login-->
+    <div class="container">
+        <form method="POST" class="row-no-gutters">
+            {% for message in messages %}
+                <li {% if message.tags == "error" %} class="{{ message.tags }} text-center list-unstyled">{{ message }}
+                    </li>{% endif %}
+            {% endfor %}
+            {% csrf_token %}
+            {{ login_form|crispy }}
+            <button class="btn btn-green" type="submit" style="background-color: #5bbb95;">Login</button>
+        </form>
 
-  <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
-</div>
+        <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+    </div>
 
 {% endblock %}

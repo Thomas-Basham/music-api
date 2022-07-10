@@ -39,8 +39,7 @@ def index(request):
 
 class SongCreate(CreateView):
     model = Music
-    fields = ["title", "artist", "img", "audio"] # "added_by",
-    # fields = "__all__"
+    fields = ["title", "artist", "img", "audio"]  # "added_by",
     success_url = reverse_lazy('index')
 
     # https://developpaper.com/file-upload-in-django-using-class-based-view/
@@ -60,6 +59,7 @@ class SongForm(ModelForm):
     class Meta:
         model = Music
         fields = "__all__"
+
 
 def register_request(request):
     if request.method == "POST":

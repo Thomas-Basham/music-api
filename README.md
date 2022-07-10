@@ -1,10 +1,10 @@
-# Lab: drf-auth
+# Music API
 
 **Author:** Thomas Basham
 
-## [Deployed Link](https://music-api-thomas-basham.herokuapp.com)
+## [music-api-thomas-basham.herokuapp.com](https://music-api-thomas-basham.herokuapp.com)
 
-## Resources
+### Resources
 
 [how-to-build-a-music-player-using-django](https://www.section.io/engineering-education/how-to-build-a-music-player-using-django/)
 

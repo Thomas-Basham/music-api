@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Warnes&display=swap');
 
 
 body, html{
@@ -13,6 +13,8 @@ body, html{
 header {
     background-color: rgba(106, 112, 224, 0.2) !important;
     color: whitesmoke !important;
+    border-bottom: solid #5bbb95 1px;
+
 }
 .navbar {
     color: whitesmoke !important;
@@ -65,7 +67,7 @@ input::file-selector-button {
     /*background-color: #1E5959;*/
     width: 80vw;
     margin: 20px auto;
-    border: solid #5bbb95 45px;
+    border: solid #5bbb95 1px;
     border-radius: 30px;
     padding-inline: 15px;
 }
@@ -74,8 +76,13 @@ input::file-selector-button {
     width: 32%;
     /*background-color: #0C7D74;*/
     padding: 30px;
-    border: solid #5bbb95 15px;
 
+
+
+}
+
+.docs-content-center {
+    border-inline: solid #5bbb95 1px;
 }
 
 
@@ -89,7 +96,8 @@ input::file-selector-button {
 
 h1 {
     text-align: center;
-    font-family: Luckiest Guy, cursive;
+    /*font-family: Luckiest Guy, cursive;*/
+    font-family: 'Warnes', cursive;
     letter-spacing: 2px;
     color: whitesmoke !important;
 
@@ -119,4 +127,9 @@ form {
 .nav-bottom {
     background-color: rgba(106, 112, 224, 0.1);
 
+}
+
+
+.error {
+    color: red;
 }

@@ -39,7 +39,12 @@
             </div>
         </div>
     </nav>
-
+    {% for message in messages %}
+        <li {% if message.tags != "error" %} class="{{ message.tags }} text-center list-unstyled">{{ message }}</li>{% endif %}
+    {% endfor %}
+                    {% if request.user.is_authenticated %}
+                        <p style="text-align: right; float: right; padding-right: 50px">Logged in as {{ request.user }}</p>
+                    {% endif %}
 </nav>
 </header>
 <main>

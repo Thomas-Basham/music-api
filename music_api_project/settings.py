@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "whitenoise.runserver_nostatic",  # Use this with whitenoise
     'django.contrib.staticfiles',
 
     'cloudinary',
@@ -174,7 +175,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://music-api-thomas-basham.herokuapp.com'
