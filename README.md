@@ -4,6 +4,10 @@
 
 ## [music-api-thomas-basham.herokuapp.com](https://music-api-thomas-basham.herokuapp.com)
 
+A Full Stack API for storing favorite music
+
+Built with Django Rest Framework, PostgreSQL, Paginator, and Cloudinary bucket for user file uploads
+
 ### Resources
 
 [how-to-build-a-music-player-using-django](https://www.section.io/engineering-education/how-to-build-a-music-player-using-django/)
