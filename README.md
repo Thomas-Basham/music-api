@@ -1,5 +1,7 @@
 # Music API
 
+[![Django CI](https://github.com/Thomas-Basham/Music-API/actions/workflows/django.yml/badge.svg)](https://github.com/Thomas-Basham/Music-API/actions/workflows/django.yml)
+
 **Author:** Thomas Basham
 
 ## [music-api-thomas-basham.herokuapp.com](https://music-api-thomas-basham.herokuapp.com)
