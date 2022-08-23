@@ -37,7 +37,7 @@ class MusicTests(APITestCase):
         )
 
     def test_get_music_list(self):
-        url = reverse("music_list")
+        url = reverse("music_list_api")
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         musics = response.data
@@ -52,7 +52,7 @@ class MusicTests(APITestCase):
         self.assertEqual(music["title"], "Three Little Birds")
 
     def test_create_music(self):
-        url = reverse("music_list")
+        url = reverse("music_list_api")
         data = {"owner": 1, "title": "Like A stone", "artist": "Audioslave"}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -70,9 +70,9 @@ class MusicTests(APITestCase):
         response = self.client.put(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         music = Music.objects.get(id=1)
-        self.assertEqual(music.name, data["title"])
-        self.assertEqual(music.owner.id, data["added_by"])
-        self.assertEqual(music.description, data["artist"])
+        self.assertEqual(music.title, data["title"])
+        self.assertEqual(music.added_by.id, data["added_by"])
+        self.assertEqual(music.artist, data["artist"])
 
     def test_delete_music(self):
         url = reverse("music_detail", args=(1,))
@@ -84,6 +84,6 @@ class MusicTests(APITestCase):
     # class 33
     def test_authentication_required(self):
         self.client.logout()
-        url = reverse("music_list")
+        url = reverse("music_list_api")
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)

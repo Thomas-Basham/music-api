@@ -24,8 +24,8 @@ class Music(models.Model):
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=64)
     artist = models.CharField(max_length=64)
-    img = CloudinaryField('img')
-    audio = CloudinaryField('audio', resource_type="video")
+    img = CloudinaryField('img', null=True)
+    audio = CloudinaryField('audio', resource_type="video", null=True)
     paginate_by = 2
 
     def __str__(self):
@@ -37,6 +37,7 @@ class Music(models.Model):
 
 @receiver(pre_delete, sender=Music)
 def photo_delete(sender, instance, **kwargs):
-    cloudinary.uploader.destroy(instance.audio.public_id, resource_type="video")
-    cloudinary.uploader.destroy(instance.img.public_id)
+    if instance.audio or instance.img:
+        cloudinary.uploader.destroy(instance.audio.public_id, resource_type="video")
+        cloudinary.uploader.destroy(instance.img.public_id)
 
