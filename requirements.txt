@@ -3,7 +3,6 @@ botocore==1.27.26
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
 cloudinary==1.29.0
-dj-database-url==0.5.0
 Django==4.0.5
 django-cloudinary-storage==0.3.0
 django-crispy-forms==1.14.0
