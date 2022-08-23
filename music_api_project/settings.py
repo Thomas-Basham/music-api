@@ -36,6 +36,8 @@ env = environ.Env(
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 5432),
+    SECRET_KEY=(str, "rSY9)s2|_1;6/]E|e+dbHwV.:K4m>B")
+
 )
 
 environ.Env.read_env()
