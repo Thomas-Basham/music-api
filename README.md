@@ -3,7 +3,7 @@
 [![Django CI](https://github.com/Thomas-Basham/music-api/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/Thomas-Basham/music-api/actions/workflows/django.yml)
 **Author:** Thomas Basham
 
-## [music-api-bashamtg.vercel.app/](https://music-api-bashamtg.vercel.app)
+## [music-api-bashamtg.vercel.app](https://music-api-bashamtg.vercel.app)
 
 A Full Stack API for storing favorite music
 
