@@ -102,7 +102,7 @@ TEMPLATES = [
   },
 ]
 
-WSGI_APPLICATION = 'music_api_project.wsgi.application'
+WSGI_APPLICATION = 'music_api_project.wsgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
