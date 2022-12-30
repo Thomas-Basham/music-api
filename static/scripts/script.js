@@ -1,3 +1,4 @@
+
 let wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'violet',

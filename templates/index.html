@@ -10,7 +10,7 @@
 
         <link href="{% static '/css/audio_player.css' %}" rel="stylesheet"/>
 
-{#        <script src="https://unpkg.com/wavesurfer.js"></script>#}
+        {#        <script src="https://unpkg.com/wavesurfer.js"></script>#}
         <script
                 src="https://code.jquery.com/jquery-3.6.3.slim.js"
                 integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc="
@@ -107,9 +107,9 @@
 
                     </div>
                     <div class="lecteur">
-                        <audio id="audio" class="fc-media" style="width: 100%;">
-                            <source id="audioSource" src="{% if item.audio %}{{ item.audio.url }} {% endif %}"
-                                    type="audio/mp3"/>
+                        <audio  class="fc-media" style="width: 100%;"
+                               id="audioSource" src="{% if item.audio %}{{ item.audio.url }} {% endif %}"
+                               type="audio/mp3">
                         </audio>
 
                     </div>
