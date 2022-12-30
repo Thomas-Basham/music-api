@@ -10,11 +10,11 @@
 
         <link href="{% static '/css/audio_player.css' %}" rel="stylesheet"/>
 
+{#        <script src="https://unpkg.com/wavesurfer.js"></script>#}
         <script
                 src="https://code.jquery.com/jquery-3.6.3.slim.js"
                 integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc="
                 crossorigin="anonymous"></script>
-            <script src="https://unpkg.com/wavesurfer.js"></script>
 
         <meta charset="utf-8"/>
     </head>
@@ -118,6 +118,7 @@
             </div>
         </div>
     </div>
+    <script src="{% static '/scripts/wavesurfer.js' %}"></script>
     <script src="{% static '/scripts/script.js' %}"></script>
     <script src="{% static '/scripts/input-knobs.js' %}"></script>
 
