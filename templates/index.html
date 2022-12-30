@@ -34,8 +34,15 @@
 
                     </div>
                     <div class="waveform-container">
+                        <div class="row align-items-center">
 
-                        <div id="waveform"></div>
+                        <div class="col-1"> <span class="time" id="time-current">0:00</span></div>
+                        <div class="col-10">
+
+                            <div id="waveform" ></div>
+                        </div>
+                        <div class="col-1"> <span class="time" id="time-remaining"></span></div>
+                        </div>
                     </div>
                     <div class="titre">
                         <h3>
@@ -44,9 +51,13 @@
                         <h1>
                             {{ item.title }}
                         </h1>
+
                     </div>
-                    <webaudio-knob id="panner-input" src={% static "/images/WOK_vintage_AbbeyRoad_PAN_Knob.png" %} sprites="127"
-                                   oninput="panAudio(value)" min="-45" max="45" value="0" width="70" height="80" style="height: 80px;" tooltip="Pan Audio">
+                    <div><span class="time" id="time-total"></span></div>
+                    <webaudio-knob id="panner-input"
+                                   src={% static "/images/WOK_vintage_AbbeyRoad_PAN_Knob.png" %} sprites="127"
+                                   oninput="panAudio(value)" min="-45" max="45" value="0" width="70" height="80"
+                                   style="height: 80px;" tooltip="Pan Audio">
 
                     </webaudio-knob>
                     <div class=" controls px-5">
@@ -64,38 +75,40 @@
                                 class="fa-solid fa-pause pause-btn"></i></div>
                         <div class="volume">
 
-                            <input oninput="wavesurfer.setVolume(value) " type="range" min="0" max="1" step=".001" value=".7"
+                            <input oninput="wavesurfer.setVolume(value) " type="range" min="0" max="1" step=".001"
+                                   value=".7"
                                    id="volume-slider">
                         </div>
                     </div>
-                    <webaudio-slider  id="sli3" direction="vert"
+                    <webaudio-slider id="sli3" direction="vert"
                                      min="0" max="2" step=".01" value="1"
-                                      oninput="wavesurfer.setPlaybackRate(value)"
+                                     oninput="wavesurfer.setPlaybackRate(value)"
                                      tooltip="Tempo"
-                        src={% static "/images/vsliderbody.png" %}
-                        knobsrc={% static "/images/vsliderknob.png" %}>
+                                     src={% static "/images/vsliderbody.png" %}
+                                             knobsrc={% static "/images/vsliderknob.png" %}>
                     </webaudio-slider>
                     <div class="extra-controls pt-5">
                         <div class="knob">
-                            <webaudio-knob src="{% static '/images/Vintage_VUMeter_2.png' %}" sprites="50" value="12"
-                                           diameter="120" style="height: 120px;"></webaudio-knob>
+                            <webaudio-knob id="audio-level" src="{% static '/images/Vintage_VUMeter_2.png' %}"
+                                           sprites="50" value="12"
+                                           min="0" max="14" diameter="120" style="height: 120px;"></webaudio-knob>
                         </div>
-                        <div class="knob">
-                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"
-                                           diameter="80" style="height: 80px;"></webaudio-knob>
-                        </div>
-                        <div class="knob">
-                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"
-                                           diameter="80" style="height: 80px;"></webaudio-knob>
-                        </div>
-                        <div class="knob">
-                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"
-                                           diameter="80" style="height: 80px;"></webaudio-knob>
-                        </div>
-                        <div class="knob">
-                            <webaudio-knob src="{% static '/images/knob_metal_mesh.png' %}" sprites="100" value="12"
-                                           diameter="120" style="height: 120px;"></webaudio-knob>
-                        </div>
+                        <webaudio-knob oninput="highPassFilter(value)" src="{% static "/images/Vintage_Knob.png" %}"
+                                       sprites="100" min="0" max="1600" value="0"
+                                       tooltip="High-Pass Filter"
+                                       diameter="80" style="height: 80px;"></webaudio-knob>
+
+                        {#                        <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"#}
+                        {#                                       diameter="80" style="height: 80px;"></webaudio-knob>#}
+                        <webaudio-knob oninput="lowPassFilter(value)" src="{% static "/images/Vintage_Knob.png" %}"
+                                       sprites="100" min="0" max="16000" value="16000"
+                                       tooltip="Low-Pass Filter"
+                                       diameter="80" style="height: 80px;"></webaudio-knob>
+
+
+                        <webaudio-knob src="{% static '/images/knob_metal_mesh.png' %}" sprites="100"
+
+                                       diameter="120" style="height: 120px;"></webaudio-knob>
 
                     </div>
                     <div class="lecteur">
