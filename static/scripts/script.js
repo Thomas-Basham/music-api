@@ -60,7 +60,7 @@ wavesurfer.on('ready', function () {
     wavesurfer.setVolume(.7)
     slider = $('#volume-slider')
     console.log(slider.val())
-    slider.val(wavesurfer.getVolume() * 100)
+    slider.val(wavesurfer.getVolume() )
     console.log(wavesurfer.getVolume() * 100)
 });
 

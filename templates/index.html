@@ -64,12 +64,13 @@
                                 class="fa-solid fa-pause pause-btn"></i></div>
                         <div class="volume">
 
-                            <input oninput="wavesurfer.setVolume(value/100) " type="range" min="0" max="100" value="70"
+                            <input oninput="wavesurfer.setVolume(value) " type="range" min="0" max="1" step=".001" value=".7"
                                    id="volume-slider">
                         </div>
                     </div>
                     <webaudio-slider  id="sli3" direction="vert"
-                                     min="0" max="100" step="1" value="50"
+                                     min="0" max="2" step=".01" value="1"
+                                      oninput="wavesurfer.setPlaybackRate(value)"
                                      tooltip="Tempo"
                         src={% static "/images/vsliderbody.png" %}
                         knobsrc={% static "/images/vsliderknob.png" %}>
