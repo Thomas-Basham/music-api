@@ -33,7 +33,10 @@
                         <img alt="" src="{{ item.img.url }}"/>
 
                     </div>
-                    <div id="waveform"></div>
+                    <div class="waveform-container">
+
+                        <div id="waveform"></div>
+                    </div>
                     <div class="titre">
                         <h3>
                             {{ item.artist }}
@@ -44,16 +47,42 @@
                     </div>
                     <div class=" controls">
                         <a
-                            href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i
-                            class="fa fa-step-backward fa-2x"></i>
+                                href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i
+                                class="fa fa-step-backward fa-2x"></i>
                         </a> &nbsp; &nbsp; &nbsp;
                         <a
-                            href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}"><i
-                            class="fa fa-step-forward fa-2x"></i>
+                                href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}"><i
+                                class="fa fa-step-forward fa-2x"></i>
                         </a>
                         <div class="play-btn play-pause" onclick="playPause()"><i class="fa-solid fa-play"></i></div>
 
-                        <div class="pause-btn play-pause" onclick="playPause()"><i class="fa-solid fa-pause pause-btn"></i></div>
+                        <div class="pause-btn play-pause" onclick="playPause()"><i
+                                class="fa-solid fa-pause pause-btn"></i></div>
+                        <div class="volume">
+
+                            <input oninput="wavesurfer.setVolume(value/100) " type="range" min="0" max="100" value="70"
+                                   id="volume-slider">
+                        </div>
+                    </div>
+                    <div class="extra-controls">
+                        <div class="knob">
+                            <webaudio-knob src="{% static '/images/Vintage_VUMeter_2.png' %}" sprites="50" value="12"
+                                           diameter="120" style="height: 120px;"></webaudio-knob>
+                        </div>
+                        <div class="knob">
+                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="62" diameter="80" style="height: 80px;"></webaudio-knob>
+                        </div>
+                        <div class="knob">
+                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="62" diameter="80" style="height: 80px;"></webaudio-knob>
+                        </div>
+                        <div class="knob">
+                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="62" diameter="80" style="height: 80px;"></webaudio-knob>
+                        </div>
+                        <div class="knob">
+                            <webaudio-knob src="{% static '/images/knob_metal_mesh.png' %}" sprites="100" value="12"
+                                           diameter="120" style="height: 120px;"></webaudio-knob>
+                        </div>
+
                     </div>
                     <div class="lecteur">
                         <audio id="audio" class="fc-media" style="width: 100%;">
@@ -67,9 +96,10 @@
             </div>
         </div>
     </div>
-    <script src="{% static '/scripts/script.js' %}">
+    <script src="{% static '/scripts/script.js' %}"></script>
+    <script src="{% static '/scripts/input-knobs.js' %}"></script>
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
 
 
 
