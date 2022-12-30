@@ -7,7 +7,9 @@ let wavesurfer = WaveSurfer.create({
 });
 
 let audio = document.getElementById('audioSource').src;
-wavesurfer.load(audio);
+// wavesurfer.load(audio);
+wavesurfer.load("http://res.cloudinary.com/dkgm8e6lz/video/upload/v1671732129/cz0pbqmpjg78vm3nxjux.mp3");
+
 
 if (!wavesurfer.isPlaying()) {
     $('.play-btn').show();
