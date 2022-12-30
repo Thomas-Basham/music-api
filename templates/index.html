@@ -45,7 +45,11 @@
                             {{ item.title }}
                         </h1>
                     </div>
-                    <div class=" controls">
+                    <webaudio-knob id="panner-input" src={% static "/images/WOK_vintage_AbbeyRoad_PAN_Knob.png" %} sprites="127"
+                                   oninput="panAudio(value)" min="-45" max="45" value="0" width="70" height="80" style="height: 80px;" tooltip="Pan Audio">
+
+                    </webaudio-knob>
+                    <div class=" controls px-5">
                         <a
                                 href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i
                                 class="fa fa-step-backward fa-2x"></i>
@@ -64,19 +68,28 @@
                                    id="volume-slider">
                         </div>
                     </div>
-                    <div class="extra-controls">
+                    <webaudio-slider  id="sli3" direction="vert"
+                                     min="0" max="100" step="1" value="50"
+                                     tooltip="Tempo"
+                        src={% static "/images/vsliderbody.png" %}
+                        knobsrc={% static "/images/vsliderknob.png" %}>
+                    </webaudio-slider>
+                    <div class="extra-controls pt-5">
                         <div class="knob">
                             <webaudio-knob src="{% static '/images/Vintage_VUMeter_2.png' %}" sprites="50" value="12"
                                            diameter="120" style="height: 120px;"></webaudio-knob>
                         </div>
                         <div class="knob">
-                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="62" diameter="80" style="height: 80px;"></webaudio-knob>
+                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"
+                                           diameter="80" style="height: 80px;"></webaudio-knob>
                         </div>
                         <div class="knob">
-                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="62" diameter="80" style="height: 80px;"></webaudio-knob>
+                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"
+                                           diameter="80" style="height: 80px;"></webaudio-knob>
                         </div>
                         <div class="knob">
-                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="62" diameter="80" style="height: 80px;"></webaudio-knob>
+                            <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"
+                                           diameter="80" style="height: 80px;"></webaudio-knob>
                         </div>
                         <div class="knob">
                             <webaudio-knob src="{% static '/images/knob_metal_mesh.png' %}" sprites="100" value="12"

@@ -28,7 +28,7 @@
 let wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'violet',
-    progressColor: 'purple'
+    progressColor: 'purple',
 
 });
 let source = document.getElementById('audioSource').src;
@@ -64,4 +64,19 @@ wavesurfer.on('ready', function () {
     console.log(wavesurfer.getVolume() * 100)
 });
 
+let panner = wavesurfer.backend.ac.createPanner();
+wavesurfer.backend.setFilter(panner);
+
+// let slider = document.querySelector('#panner-input');
+// slider.addEventListener('input', function (e) {
+//     var xDeg = parseInt(e.target.value);
+//     var x = Math.sin(xDeg * (Math.PI / 180));
+//     wavesurfer.panner.setPosition(x, 0, 0);
+// });
+function panAudio(value){
+    var xDeg = parseInt(value);
+    var x = Math.sin(xDeg * (Math.PI / 180));
+   panner.setPosition(x, 0, 0);
+
+}
 
