@@ -1,0 +1,140 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Warnes&display=swap');
+
+
+body, html{
+
+    /*height: 100%;*/
+    /*width: 100%;*/
+
+    background:  linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) repeat scroll 0 0;
+    color: whitesmoke !important;
+}
+header {
+    background-color: rgba(106, 112, 224, 0.2) !important;
+    color: whitesmoke !important;
+    border-bottom: solid #5bbb95 1px;
+
+}
+.navbar {
+    color: whitesmoke !important;
+}
+
+main {
+    margin-block: 50px;
+    padding-bottom: 200px;
+    min-height: 80vh;
+}
+
+
+
+.container {
+    text-align: center;
+}
+
+
+input {
+    background-color: #5bbb95 !important;
+    border-radius: 6px !important;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 100% !important;
+    opacity: 1 !important;
+
+}
+
+.form-control-file {
+    background-color: rgba(106, 112, 224, 0.2) !important;
+}
+
+input::file-selector-button {
+    cursor: pointer;
+
+    font-weight: bold;
+    color: dodgerblue;
+
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 6px;
+    background-color: #164773;
+}
+
+.docs {
+    /*background-color: #1E5959;*/
+    width: 80vw;
+    margin: 20px auto;
+    border: solid #5bbb95 1px;
+    border-radius: 30px;
+    padding-inline: 15px;
+}
+
+.docs-content {
+    width: 32%;
+    /*background-color: #0C7D74;*/
+    padding: 30px;
+
+
+
+}
+
+.docs-content-center {
+    border-inline: solid #5bbb95 1px;
+}
+   @media (max-width: 480px){
+       .docs-content-center {
+    border-block: solid #5bbb95 1px;
+}
+   }
+
+
+.docs-content h4 {
+    margin-top: 10px;
+}
+
+.docs-content .text-light {
+    font-size: 10px;
+}
+
+h1 {
+    text-align: center;
+    /*font-family: Luckiest Guy, cursive;*/
+    font-family: 'Warnes', cursive;
+    letter-spacing: 2px;
+    color: whitesmoke !important;
+
+}
+
+label {
+    padding: 5px;
+}
+
+
+
+.btn:hover {
+    zoom: 1.2 !important;
+}
+
+form {
+
+    background:  linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) no-repeat scroll 0 0;
+    padding: 20px;
+    text-align: left;
+    width: 70vw;
+    margin: 0 auto;
+    border: solid #5bbb95 1px;
+
+}
+
+.nav-bottom {
+    background-color: rgba(106, 112, 224, 0.1);
+
+}
+
+
+.error {
+    color: red;
+}
