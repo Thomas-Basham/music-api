@@ -32,15 +32,7 @@ function playPause() {
 }
 
 
-wavesurfer.on('ready', function () {
-    wavesurfer.setVolume(.7)
-    slider = $('#volume-slider')
-    slider.val(wavesurfer.getVolume())
-    let totalTime = Math.round(wavesurfer.getDuration())
-    document.getElementById('time-total').innerText = formatTime(totalTime);
-    document.getElementById('time-remaining').innerText = formatTime(totalTime);
 
-});
 let panner = wavesurfer.backend.ac.createPanner();
 
 function panAudio(value) {
@@ -72,12 +64,21 @@ function highPassFilter(value) {
     highpass.frequency.value = value
 }
 
+function adjustVolume(value){
+    let gainSlider = document.getElementById("gain-slider")
+        wavesurfer.setVolume(gainSlider.value * value)
+
+}
+function adjustGain(value){
+    let volumeSlider = document.getElementById("volume-slider");
+    wavesurfer.setVolume(volumeSlider.value * value)
+
+}
+
+
 let analyser = wavesurfer.backend.analyser
 frequencyData = new Uint8Array(analyser.frequencyBinCount)
-
 // console.log(analyser)
-
-
 let formatTime = function (time) {
     return [
         Math.floor((time % 3600) / 60), // minutes
@@ -85,11 +86,22 @@ let formatTime = function (time) {
     ].join(':');
 };
 
+//wavesurfer 'ready' event Fires when wavesurfer loads @see events on wave surfer http://wavesurfer-js.org/docs/events.html
+wavesurfer.on('ready', function () {
+    wavesurfer.setVolume(.7)
+    slider = $('#volume-slider')
+    slider.val(wavesurfer.getVolume())
+    let totalTime = Math.round(wavesurfer.getDuration())
+    document.getElementById('time-total').innerText = formatTime(totalTime);
+    document.getElementById('time-remaining').innerText = formatTime(totalTime);
+    wavesurfer.set
+});
+
+
 //wavesurfer 'audioprocess' event Fires continuously as the audio plays @see events on wave surfer http://wavesurfer-js.org/docs/events.html
 wavesurfer.on('audioprocess', function (e) {
 
     analyser.getByteFrequencyData(frequencyData);
-
     // console.log(frequencyData);
 
     var w = frequencyData[0] * 0.05;
@@ -107,5 +119,5 @@ wavesurfer.on('audioprocess', function (e) {
 
 });
 
-let timer = wavesurfer.backend.setFilters([highpass, lowpass, panner]);
+wavesurfer.backend.setFilters([highpass, lowpass, panner]);
 

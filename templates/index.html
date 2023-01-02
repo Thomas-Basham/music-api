@@ -70,7 +70,7 @@
                                 class="fa-solid fa-pause pause-btn"></i></div>
                         <div class="volume">
 
-                            <input oninput="wavesurfer.setVolume(value) " type="range" min="0" max="1" step=".001"
+                            <input oninput="adjustVolume(value) " type="range" min="0" max="1" step=".001"
                                    value=".7"
                                    id="volume-slider">
                         </div>
@@ -83,31 +83,37 @@
                                              knobsrc={% static "/images/vsliderknob.png" %}>
                     </webaudio-slider>
                     <div class="extra-controls pt-5">
-                        <div class="knob">
                             <webaudio-knob id="audio-level" src="{% static '/images/Vintage_VUMeter_2.png' %}"
                                            sprites="50" value="12"
-                                           min="0" max="14" diameter="120" style="height: 120px;"></webaudio-knob>
-                        </div>
+                                           min="0" max="14" diameter="120" style="height: 120px;">
+                            </webaudio-knob>
+
                         <webaudio-knob oninput="highPassFilter(value)" src="{% static "/images/Vintage_Knob.png" %}"
                                        sprites="100" min="0" max="1600" value="0"
                                        tooltip="High-Pass Filter"
-                                       diameter="80" style="height: 80px;"></webaudio-knob>
+                                       diameter="80" style="height: 80px;">
+                        </webaudio-knob>
 
-                        {#                        <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"#}
-                        {#                                       diameter="80" style="height: 80px;"></webaudio-knob>#}
+                        {#  <webaudio-knob src="{% static "/images/Vintage_Knob.png" %}" sprites="100" value="50"#}
+                        {# diameter="80" style="height: 80px;">#}
+                        {#  </webaudio-knob>#}
+
                         <webaudio-knob oninput="lowPassFilter(value)" src="{% static "/images/Vintage_Knob.png" %}"
-                                       sprites="100" min="0" max="16000" value="16000"
+                                       sprites="100"  min="0" max="1600" value="1600"
                                        tooltip="Low-Pass Filter"
-                                       diameter="80" style="height: 80px;"></webaudio-knob>
+                                       diameter="80" style="height: 80px;">
+                        </webaudio-knob>
 
 
-                        <webaudio-knob src="{% static '/images/knob_metal_mesh.png' %}" sprites="100"
-
-                                       diameter="120" style="height: 120px;"></webaudio-knob>
+                        <webaudio-knob oninput="adjustGain(value)" src="{% static '/images/knob_metal_mesh.png' %}" sprites="100"
+                                       id="gain-slider"
+                                       min="1" max="5" value="1" step=".001" tooltip="Gain"
+                                       diameter="120" style="height: 120px;">
+                        </webaudio-knob>
 
                     </div>
                     <div class="lecteur">
-                        <audio  class="fc-media" style="width: 100%;"
+                        <audio class="fc-media" style="width: 100%;"
                                id="audioSource" src="{% if item.audio %}{{ item.audio.url }} {% endif %}"
                                type="audio/mp3">
                         </audio>
