@@ -21,24 +21,25 @@ h3 {
     color: #ccc;
     padding: 0 10%;
 }
-.container {
-    display: block;
-    width: 100%;
-    height: max-content;
-    margin: auto;
-    overflow: hidden;
-    /*background-image: url("https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/bg-music-player.jpg");*/
-    background-repeat: repeat;
-    background-size: cover;
-    border-radius: 10px;
-    padding-bottom: 50px;
-}
+/*.container {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: max-content;*/
+/*    margin: auto;*/
+/*    overflow: hidden;*/
+/*    !*background-image: url("https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/bg-music-player.jpg");*!*/
+/*    background-repeat: repeat;*/
+/*    background-size: cover;*/
+/*    border-radius: 10px;*/
+/*    padding-bottom: 50px;*/
+/*}*/
+
 .music-player {
     display: block;
     position: relative;
-    width:50vw;
+    width:70vw;
     height: fit-content;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 6%;
     padding-bottom: 5em;
     border: solid #5bbb95 1px;

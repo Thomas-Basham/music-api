@@ -16,3 +16,5 @@ Built with Django Rest Framework, PostgreSQL, Paginator, and Cloudinary bucket f
 [Web Audio Controls](https://g200kg.github.io/webaudio-controls/docs/knobgallery.html)
 
 [How to Upload Files to S3 Using Django Storages](https://www.youtube.com/watch?v=nzLMA9WZqMM&t=152s)
+
+[Royalty Free Music](https://pixabay.com/music)
