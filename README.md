@@ -9,6 +9,11 @@ A Full Stack API for storing favorite music
 
 Built with Django Rest Framework, PostgreSQL, Paginator, and Cloudinary bucket for user file uploads
 
+<img src="./static/images/screen-shots/Screenshot1.png">
+<img src="./static/images/screen-shots/Screenshot2.png">
+<img src="./static/images/screen-shots/Screenshot4.png">
+<img src="./static/images/screen-shots/Screenshot3.png">
+
 ### Resources
 
 [Wavesurfer-js](https://wavesurfer-js.org/)
