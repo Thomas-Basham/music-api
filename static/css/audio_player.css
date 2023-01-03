@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
 
 
-*:focus{
+*:focus {
     outline: none;
 }
 
@@ -14,6 +14,7 @@
     max-height: max-content;
     overflow: auto;
 }
+
 h3 {
     margin: 0;
     font-size: 17px;
@@ -21,46 +22,49 @@ h3 {
     color: #ccc;
     padding: 0 10%;
 }
-.container {
-    display: block;
-    width: 100%;
-    height: max-content;
-    margin: auto;
-    overflow: hidden;
-    /*background-image: url("https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/bg-music-player.jpg");*/
-    background-repeat: repeat;
-    background-size: cover;
-    border-radius: 10px;
-    padding-bottom: 50px;
-}
+
+/*.container {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    height: max-content;*/
+/*    margin: auto;*/
+/*    overflow: hidden;*/
+/*    !*background-image: url("https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/bg-music-player.jpg");*!*/
+/*    background-repeat: repeat;*/
+/*    background-size: cover;*/
+/*    border-radius: 10px;*/
+/*    padding-bottom: 50px;*/
+/*}*/
+
 .music-player {
     display: block;
     position: relative;
-    width:50vw;
+    width: 70vw;
     height: fit-content;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 6%;
     padding-bottom: 5em;
     border: solid #5bbb95 1px;
     border-radius: 0 0 10px 10px;
-    background: transparent linear-gradient(to bottom,rgba(10,11,31,0.9) 50%,rgb(10,11,31) 70%) repeat scroll 0 0;
+    background: transparent linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) repeat scroll 0 0;
     box-shadow: 1px 10px 20px 5px #222;
 
 }
-   @media (max-width: 480px) {
-       .music-player {
-           display: block;
-           position: relative;
-           width: 85vw;
-           height: 550px;
-           margin: auto;
-           margin-top: 6%;
-           padding-bottom: 30px;
-           border: solid #5bbb95 1px;
-           border-radius: 0 0 10px 10px;
-           background: transparent linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) repeat scroll 0 0;
-           box-shadow: 1px 10px 20px 5px #222;
-       }
+
+@media (max-width: 480px) {
+    .music-player {
+        display: block;
+        position: relative;
+        width: 85vw;
+        height: 550px;
+        margin: auto;
+        margin-top: 6%;
+        padding-bottom: 30px;
+        border: solid #5bbb95 1px;
+        border-radius: 0 0 10px 10px;
+        background: transparent linear-gradient(to bottom, rgba(10, 11, 31, 0.9) 50%, rgb(10, 11, 31) 70%) repeat scroll 0 0;
+        box-shadow: 1px 10px 20px 5px #222;
+    }
 }
 
 
@@ -69,6 +73,7 @@ h3 {
     width: 100%;
     /*height: 60%;*/
 }
+
 .cover img {
     /*display: block;*/
     /*position: absolute;*/
@@ -76,15 +81,23 @@ h3 {
     /*left: 14%;*/
     /*width: 20%;*/
     /*margin: auto;*/
-    padding-top: 2em;
+    /*padding-top: 2em;*/
     text-align: center;
-        margin: 0 auto !important;
+    margin: 0 auto !important;
 
 }
+
+.cover-grid {
+    padding-top: 2em;
+    width: 90%;
+    margin: 0 auto;
+}
+
 .titre {
     float: left;
     width: 100%;
 }
+
 .lecteur {
     width: 100%;
     display: block;
@@ -93,11 +106,12 @@ h3 {
     float: left;
 }
 
-.controls{
+.controls {
     display: inline-block;
     width: 300px;
     padding-inline: 10px;
 }
+
 .play-pause {
     font-size: 1.6em;
     float: right;
@@ -105,12 +119,13 @@ h3 {
     color: springgreen;
 }
 
-.volume{
+.volume {
     display: flex;
     align-content: end;
     text-align: right;
 }
-#volume-slider{
+
+#volume-slider {
     /*width: 30% !important;*/
     margin-left: auto !important;
 }
@@ -120,12 +135,36 @@ h3 {
     width: 90% !important;
 }
 
-.extra-controls{
+.extra-controls {
     width: 70%;
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
 }
-.time{
+
+.time {
     color: springgreen;
+}
+
+.next-song, .prev-song {
+    padding-block: 1em;
+}
+
+.next-song {
+    display: flex;
+    justify-content: right;
+}
+
+.card {
+    font-size: 60% !important;
+    height: 80px !important;
+    text-align: left;
+}
+td{
+    color: gainsboro;
+}
+tr:hover {
+
+    filter: brightness(150%);
+    background-color: #4f5b69;
 }

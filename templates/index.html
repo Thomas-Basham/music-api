@@ -24,8 +24,57 @@
         <div class="container">
             <div class="music-player">
                 {% for item in page_obj %}
-                    <div class="cover">
-                        <img alt="" src="{{ item.img.url }}"/>
+                    <div class="row cover-grid">
+                        <div class="col-4 prev-song">
+
+                            <div class="card mb-1" style="max-width: 100%; background-color: inherit">
+                                <div class="row no-gutters align-items-baseline">
+                                    <div class="col-md-2">
+                                        <img width="100%" src="{{ prev_page.img.url }}" alt="{{ prev_page.img.url }}">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-0">{{ prev_page.title }}</h5>
+                                            <p class="card-text  mb-0">{{ prev_page.artist }}</p>
+                                            <p class="card-text"><small class="text-muted"
+                                                                        id="prev_song_duration"></small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="cover col-4">
+                            <img alt="" src="{{ item.img.url }}"/>
+
+                        </div>
+                        <div class="col-4 next-song ">
+
+                            <div class="card mb-1" style="max-width: 100%; background-color: inherit">
+                                <div class="row no-gutters align-items-baseline">
+                                    <div class="col-md-2">
+                                        <img width="100%" src="{{ next_page.img.url }}" alt="{{ next_page.img.url }}">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-0">{{ next_page.title }}</h5>
+                                            <p class="card-text  mb-0">{{ next_page.artist }}</p>
+                                            <p class="card-text"><small class="text-muted"
+                                                                        id="next_song_duration"></small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="titre">
+                        <h3>
+                            {{ item.artist }}
+                        </h3>
+                        <h1>
+                            {{ item.title }}
+                        </h1>
 
                     </div>
                     <div class="waveform-container">
@@ -39,16 +88,7 @@
                             <div class="col-1"><span class="time" id="time-remaining"></span></div>
                         </div>
                     </div>
-                    <div class="titre">
-                        <h3>
-                            {{ item.artist }}
-                        </h3>
-                        <h1>
-                            {{ item.title }}
-                        </h1>
-
-                    </div>
-                    <div><span class="time" id="time-total"></span></div>
+                    <div><span hidden class="time" id="time-total"></span></div>
                     <webaudio-knob id="panner-input"
                                    src={% static "/images/WOK_vintage_AbbeyRoad_PAN_Knob.png" %} sprites="127"
                                    oninput="panAudio(value)" min="-45" max="45" value="0" width="70" height="80"
@@ -57,11 +97,12 @@
                     </webaudio-knob>
                     <div class=" controls px-5">
                         <a
-                                href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}"><i
+                                href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }} {% else %} ?page=-1 {% endif %}"><i
                                 class="fa fa-step-backward fa-2x"></i>
                         </a> &nbsp; &nbsp; &nbsp;
                         <a
-                                href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }} {% endif %}"><i
+                                href="{% if page_obj.has_next %}?page=
+                                    {{ page_obj.next_page_number }}{% else %}?page='1' {% endif %}"><i
                                 class="fa fa-step-forward fa-2x"></i>
                         </a>
                         <div class="play-btn play-pause" onclick="playPause()"><i class="fa-solid fa-play"></i></div>
@@ -75,18 +116,18 @@
                                    id="volume-slider">
                         </div>
                     </div>
-                    <webaudio-slider id="sli3" direction="vert"
-                                     min="0" max="2" step=".01" value="1"
+                    <webaudio-slider id="tempo-slider" direction="vert"
+                                     min=".2" max="2" step=".01" value="1"
                                      oninput="wavesurfer.setPlaybackRate(value)"
                                      tooltip="Tempo"
                                      src={% static "/images/vsliderbody.png" %}
                                              knobsrc={% static "/images/vsliderknob.png" %}>
                     </webaudio-slider>
                     <div class="extra-controls pt-5">
-                            <webaudio-knob id="audio-level" src="{% static '/images/Vintage_VUMeter_2.png' %}"
-                                           sprites="50" value="12"
-                                           min="0" max="14" diameter="120" style="height: 120px;">
-                            </webaudio-knob>
+                        <webaudio-knob id="audio-level" src="{% static '/images/Vintage_VUMeter_2.png' %}"
+                                       sprites="50" value="12"
+                                       min="0" max="14" diameter="120" style="height: 120px;">
+                        </webaudio-knob>
 
                         <webaudio-knob oninput="highPassFilter(value)" src="{% static "/images/Vintage_Knob.png" %}"
                                        sprites="100" min="0" max="1600" value="0"
@@ -99,15 +140,16 @@
                         {#  </webaudio-knob>#}
 
                         <webaudio-knob oninput="lowPassFilter(value)" src="{% static "/images/Vintage_Knob.png" %}"
-                                       sprites="100"  min="0" max="1600" value="1600"
+                                       sprites="100" min="0" max="19000" value="19000"
                                        tooltip="Low-Pass Filter"
                                        diameter="80" style="height: 80px;">
                         </webaudio-knob>
 
 
-                        <webaudio-knob oninput="adjustGain(value)" src="{% static '/images/knob_metal_mesh.png' %}" sprites="100"
+                        <webaudio-knob oninput="adjustGain(value)" src="{% static '/images/knob_metal_mesh.png' %}"
+                                       sprites="100"
                                        id="gain-slider"
-                                       min="1" max="5" value="1" step=".001" tooltip="Gain"
+                                       min="1" max="6" value="1" step=".001" tooltip="Gain"
                                        diameter="120" style="height: 120px;">
                         </webaudio-knob>
 
@@ -120,13 +162,47 @@
 
                     </div>
                 {% endfor %}
+                <table class="table mt-4">
+                    <tbody>
 
+                    {% for song in songs %}
+                        <tr style="cursor: pointer;" onclick="window.location.href='?page={{ forloop.counter }}'">
+                            <td>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <strong>
+                                            {{ song.title }}
+                                        </strong>
+                                    </div>
+                                    <div class="col-1">
+                                        {{ song.artist }}
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td id="song-{{ forloop.counter0 }}">
+                                0:00
+                            </td>
+
+                        </tr>
+                        <audio class="fc-media audio-source" style="width: 100%;"
+                               src="{% if song.audio %}{{ song.audio.url }} {% endif %}"
+                               type="audio/mp3">
+                        </audio>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>
+    <script>
+        let prev_page = "{{prev_page.audio.url}}";
+        let next_page = "{{next_page.audio.url}}";
+    </script>
     <script src="{% static '/scripts/wavesurfer.js' %}"></script>
-    <script src="{% static '/scripts/script.js' %}"></script>
     <script src="{% static '/scripts/input-knobs.js' %}"></script>
+    <script src="{% static '/scripts/audio-player.js' %}"></script>
 
 
 

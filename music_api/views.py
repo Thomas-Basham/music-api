@@ -30,9 +30,20 @@ def index(request):
     paginator = Paginator(list(reversed(Music.objects.all())), 1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
+    if page_obj.has_next():
+        next_page = paginator.get_page(page_obj.next_page_number())
+    if not page_obj.has_next():
+        next_page = paginator.get_page('1')
+    if page_obj.has_previous():
+        prev_page = paginator.get_page(page_obj.previous_page_number())
+    if not page_obj.has_previous():
+        prev_page = paginator.get_page('-1')
     context = dict(page_obj=page_obj)
-    context["dataset"] = Music.objects.all().order_by("-id")
+    context["songs"] = list(reversed(Music.objects.all()))
+    context["next_page"] = next_page[0]
+    context["prev_page"] = prev_page[0]
+    context["end_page"] =  paginator.get_page('-1')
+
 
     return render(request, "index.html", context)
 
