@@ -27,6 +27,7 @@ class Music(models.Model):
     img = CloudinaryField('img', null=True)
     audio = CloudinaryField('audio', resource_type="video", null=True)
     paginate_by = 2
+    plays = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -34,6 +35,9 @@ class Music(models.Model):
     def get_absolute_url(self):
         return reverse("music_list_api")
 
+    def increment(self):
+        self.plays += 1
+        self.save()
 
 @receiver(pre_delete, sender=Music)
 def photo_delete(sender, instance, **kwargs):

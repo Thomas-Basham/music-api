@@ -27,7 +27,7 @@ if (!wavesurfer.isPlaying()) {
     $('.play-btn').hide();
 }
 
-function playPause() {
+function playPause(id, plays) {
     if (wavesurfer.isPlaying()) {
         wavesurfer.pause();
         $('.play-btn').show();
@@ -36,7 +36,12 @@ function playPause() {
         wavesurfer.play();
         $('.pause-btn').show();
         $('.play-btn').hide();
+        play_count += 1
+        if (play_count === 1) {
+            incrementPlays(id, plays)
+        }
     }
+
 }
 
 

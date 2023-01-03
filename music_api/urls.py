@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import MusicList, MusicDetail, index, SongCreate,\
-    register_request, login_request, logout_request, documentation
+    register_request, login_request, logout_request, documentation, song_update_view
 
 urlpatterns = [
     path("", index, name="index"),
@@ -11,5 +11,6 @@ urlpatterns = [
     path("logout", logout_request, name="logout"),
     path("add-song-form", SongCreate.as_view(), name="add_song_form"),
     path("documentation", documentation, name="documentation"),
+    path('update/<int:id>', song_update_view, name='update'),
 
 ]
