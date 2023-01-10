@@ -1,8 +1,9 @@
 # Music API
 
-[![Django CI](https://github.com/Thomas-Basham/music-api/actions/workflows/django.yml/badge.svg?branch=main)](https://github.com/Thomas-Basham/music-api/actions/workflows/django.yml)
-
 **Author:** Thomas Basham
+
+[![Django CI](https://github.com/Thomas-Basham/music-api/actions/workflows/django.yml/badge.svg)](https://github.com/Thomas-Basham/music-api/actions/workflows/django.yml)
+
 
 ## [music-api-bashamtg.vercel.app](https://music-api-bashamtg.vercel.app)
 
