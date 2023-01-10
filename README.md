@@ -7,9 +7,9 @@
 
 ## [music-api-bashamtg.vercel.app](https://music-api-bashamtg.vercel.app)
 
-A Full Stack API for storing favorite music
+A Full Stack API for storing royalty free music.
 
-Built with Django Rest Framework, PostgreSQL, Paginator, and Cloudinary bucket for user file uploads
+Built with Django Rest Framework, PostgreSQL, Paginator, Wavsurfer.js, and Cloudinary Storage.
 
 <img src="./static/images/screen-shots/Screenshot1.png">
 <img src="./static/images/screen-shots/Screenshot2.png">
