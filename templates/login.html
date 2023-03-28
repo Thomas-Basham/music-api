@@ -4,14 +4,14 @@
 {% block content %}
 
     {% load crispy_forms_tags %}
+    <div class="bg-blue vh-100">
 
-    <h1 class="display-3">Login</h1>
+        <h1 class="display-3">Login</h1>
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <!--Login-->
-    <div class="container">
+        <!--Login-->
         <form method="POST" class="row-no-gutters">
             {% for message in messages %}
                 <li {% if message.tags == "error" %} class="{{ message.tags }} text-center list-unstyled">{{ message }}
@@ -25,4 +25,5 @@
         <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
     </div>
 
+    </div>
 {% endblock %}

@@ -5,27 +5,30 @@
 
     {% load crispy_forms_filters %}
     {% load crispy_forms_tags %}
+    <div class="bg-blue vh-100">
 
-    <h1 class="display-3">Register</h1>
+        <h1 class="display-3">Register</h1>
 
 
-<br>
-<br>
+        <br>
+        <br>
 
-    <!--Register-->
-    <div class="container">
-        <form method="POST" class="register-form row-no-gutters ">
-            {% for message in messages %}
-                <li {% if message.tags == "error" %} class="{{ message.tags }} text-center list-unstyled">{{ message }}
-                    </li>{% endif %}
-            {% endfor %}
-            {% csrf_token %}
-            {{ register_form|crispy }}
-            <button class="btn btn-green " type="submit" style="background-color: #5bbb95;" >Register</button>
+        <!--Register-->
+        <div class="container">
+            <form method="POST" class="register-form row-no-gutters ">
+                {% for message in messages %}
+                    <li {% if message.tags == "error" %} class="{{ message.tags }} text-center list-unstyled">
+                            {{ message }}
+                        </li>{% endif %}
+                {% endfor %}
+                {% csrf_token %}
+                {{ register_form|crispy }}
+                <button class="btn btn-green " type="submit" style="background-color: #5bbb95;">Register</button>
 
-        </form>
+            </form>
 
-        <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+            <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+        </div>
+
     </div>
-
 {% endblock %}

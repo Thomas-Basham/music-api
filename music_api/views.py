@@ -1,31 +1,39 @@
 from django.forms import ModelForm
-from django.http import HttpResponse
-from django.template import loader
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics
+from rest_framework import generics, renderers, schemas
 from django.views.generic.edit import CreateView
-from .forms import NewUserForm
-from .permissions import IsOwnerOrReadOnly
-from .serializers import MusicSerializer
-from django.shortcuts import render, redirect, get_object_or_404
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.response import Response
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator
-# import models
+
+from .forms import NewUserForm
+from .serializers import MusicSerializer
 from .models import Music
+from .permissions import IsOwnerOrReadOnly
 
 
-class MusicList(generics.ListCreateAPIView):
+class MusicListCreateView(generics.ListCreateAPIView):
   queryset = Music.objects.all()
   serializer_class = MusicSerializer
+  permission_classes = [IsOwnerOrReadOnly]
 
 
-class MusicDetail(generics.RetrieveUpdateDestroyAPIView):
-  permission_classes = (IsOwnerOrReadOnly,)
+class MusicRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
   queryset = Music.objects.all()
   serializer_class = MusicSerializer
+  permission_classes = [IsOwnerOrReadOnly]
+
+
+@api_view
+@renderer_classes([renderers.OpenAPIRenderer])
+def schema_view(request):
+  generator = schemas.SchemaGenerator(title='Music API')
+  return Response(generator.get_schema())
 
 
 def index(request):
@@ -65,15 +73,12 @@ class SongCreate(CreateView):
   # override
   def form_valid(self, form):
     # Add the user object into the form and store it in the model
-    form.instance.added_by = self.request.user
+    if self.request.user:
+      form.instance.added_by = self.request.user
+    else:
+      form.instance.added_by = None
     return super(SongCreate, self).form_valid(form)
 
-
-def song_update_view(request, id):
-  mySong = get_object_or_404(Music,pk=id)
-  print("MY SONG", mySong)
-  mySong.increment()
-  return HttpResponse()
 
 class SongForm(ModelForm):
   class Meta:
