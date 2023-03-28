@@ -176,7 +176,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
   'TITLE': 'Music API',
-  'DESCRIPTION': 'API for storing favorite music',
+  'DESCRIPTION': "Here's a quick how-to guide to get started with our music API:\nFirst, obtain your user credentials, including a username and password.\nUse the token_create endpoint to authenticate your credentials and receive a JSON web token pair containing an access and refresh token.\nWith your access token, you can then make requests to the other endpoints to access, create, update, or delete music data as needed.\nMake sure to include your access token in the Authorization header for every request to authenticate your access.\nIf your access token has expired, use the token_refresh_create endpoint to generate a new access token using your refresh token.\nRefer to the documentation for the available endpoints, their request and response formats, and any necessary authentication requirements.\nThat's it! With this guide and the detailed documentation, you should be able to start using our music API quickly and efficiently.",
   'VERSION': '1.0.0',
   'SERVE_INCLUDE_SCHEMA': False,
   # OTHER SETTINGS
