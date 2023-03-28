@@ -1,10 +1,8 @@
 from django.forms import ModelForm
 from django.urls import reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics, renderers, schemas
+from rest_framework import generics
 from django.views.generic.edit import CreateView
-from rest_framework.decorators import api_view, renderer_classes
-from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
@@ -27,13 +25,6 @@ class MusicRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
   queryset = Music.objects.all()
   serializer_class = MusicSerializer
   permission_classes = [IsOwnerOrReadOnly]
-
-
-@api_view
-@renderer_classes([renderers.OpenAPIRenderer])
-def schema_view(request):
-  generator = schemas.SchemaGenerator(title='Music API')
-  return Response(generator.get_schema())
 
 
 def index(request):
@@ -122,8 +113,3 @@ def logout_request(request):
   logout(request)
   messages.info(request, "You have successfully logged out.")
   return redirect("index")
-
-
-def documentation(request):
-  context = dict(current_user=request.user)
-  return render(request, 'documentation.html', context)

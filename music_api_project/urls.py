@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 from drf_spectacular.views import SpectacularAPIView
 from music_api.views import SongCreate, \
-  register_request, login_request, logout_request, documentation, index
+  register_request, login_request, logout_request, index
 
 urlpatterns = [
   # Back End
